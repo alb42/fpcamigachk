@@ -3,16 +3,272 @@
 @Pascal begin
 
 @C #include <exec/lists.h>
+@C #include <exec/resident.h>
+@C #include <exec/memory.h>
+@C #include <exec/interrupts.h>
+@C #include <exec/ports.h>
+@C #include <exec/tasks.h>
+@C #include <exec/semaphores.h>
+@C #include <exec/libraries.h>
+@C #include <exec/devices.h>
+@C #include <exec/io.h>
+@C #include <exec/execbase.h>
+@C #include <exec/avl.h>
 @C #include <stdio.h>
 @C #include <stddef.h>
 @C int main()
 @C {
+
+@record TNode,struct Node
+.ln_Succ
+.ln_Pred
+.ln_Name
+.ln_Type
+.ln_Pri
+
+@record TMinNode,struct MinNode
+.mln_Succ
+.mln_Pred
 
 @record TList,struct List
 .lh_Head
 .lh_Tail
 .lh_Type
 .l_Pad,l_pad
+
+@record TMinList,struct MinList
+.mlh_Head
+.mlh_Tail
+.mlh_TailPred
+
+@record TResident,struct Resident
+.rt_MatchWord
+.rt_MatchTag
+.rt_EndSkip
+.rt_Flags
+.rt_Version
+.rt_Type
+.rt_Pri
+.rt_Name
+.rt_IdString
+.rt_Init
+.rt_Revision
+.rt_Tags
+
+@record TMemChunk,struct MemChunk
+.mc_Next
+.mc_Bytes
+
+@record TMemHeader,struct MemHeader
+.mh_Node
+.mh_Attributes
+.mh_First
+.mh_Lower
+.mh_Upper
+.mh_Free
+
+@record TMemEntry,struct MemEntry
+.me_Un.meu_Reqs
+.me_Un.meu_Addr
+.me_Length
+
+@record TMemList,struct MemList
+.ml_Node
+.ml_NumEntries
+.ml_ME
+
+@record TMemHandlerData,struct MemHandlerData
+.memh_RequestSize
+.memh_RequestFlags
+.memh_Flags
+
+@record TInterrupt,struct Interrupt
+.is_Node
+.is_Data
+.is_Code
+
+@record TIntVector,struct IntVector
+.iv_Data
+.iv_Code
+.iv_Node
+
+@record TSoftIntList,struct SoftIntList
+.sh_List
+.sh_Pad
+
+@record TMsgPort,struct MsgPort
+.mp_Node
+.mp_Flags
+.mp_SigBit
+.mp_SigTask
+.mp_MsgList
+
+@record TMessage,struct Message
+.mn_Node
+.mn_ReplyPort
+.mn_Length
+
+@record TMagicMessage, struct MagicMessage
+.mn_Node
+.mn_ReplyPort
+.mn_Length
+.mn_Magic
+.mn_Version
+
+@record TTask,struct Task
+.tc_Node
+.tc_Flags
+.tc_State
+.tc_IDNestCnt
+.tc_TDNestCnt
+.tc_SigAlloc
+.tc_SigWait
+.tc_SigRecvd
+.tc_SigExcept
+.tc_TrapAlloc
+.tc_TrapAble
+//.tc_ETask
+.tc_ExceptData
+.tc_ExceptCode
+.tc_TrapData
+.tc_TrapCode
+.tc_SPReg
+.tc_SPLower
+.tc_SPUpper
+.tc_Switch
+.tc_Launch
+.tc_MemEntry
+.tc_UserData
+
+@record TStackSwapStruct,struct StackSwapStruct
+.stk_Lower
+.stk_Upper
+.stk_Pointer
+
+@record TStackSwapArgs,struct StackSwapArgs
+.Args
+
+@record TSemaphoreRequest,struct SemaphoreRequest
+.sr_Link
+.sr_Waiter
+
+@record TSignalSemaphore,struct SignalSemaphore
+.ss_Link
+.ss_NestCount
+.ss_WaitQueue
+.ss_MultipleLink
+.ss_Owner
+.ss_QueueCount
+
+@record TSemaphoreMessage,struct SemaphoreMessage
+.ssm_Message
+.ssm_Semaphore
+
+@record TLibrary,struct Library
+.lib_Node
+.lib_Flags
+.lib_NegSize
+.lib_PosSize
+.lib_Version
+.lib_Revision
+.lib_IdString
+.lib_Sum
+.lib_OpenCnt
+
+@record TDevice,struct Device
+.dd_Library
+
+@record TUnit,struct Unit
+.unit_MsgPort
+.unit_flags
+.unit_pad
+.unit_OpenCnt
+
+@record TIORequest, struct IORequest
+.io_Message
+.io_Device
+.io_Unit
+.io_Command
+.io_Flags
+.io_Error
+
+@record TIOStdReq,struct IOStdReq
+.io_Message
+.io_Device
+.io_Unit
+.io_Command
+.io_Flags
+.io_Error
+.io_Actual
+.io_Length
+.io_Data
+.io_Offset
+
+@record TExecBase,struct ExecBase
+.LibNode
+.SoftVer
+.LowMemChkSum
+.ChkBase
+.ColdCapture
+.CoolCapture
+.WarmCapture
+.SysStkUpper
+.SysStkLower
+.MaxLocMem
+.DebugEntry
+.DebugData
+.AlertData
+.MaxExtMem
+.ChkSum
+.IntVects
+.ThisTask
+.IdleCount
+.DispCount
+.Quantum
+.Elapsed
+.SysFlags
+.IDNestCnt
+.TDNestCnt
+.AttnFlags
+.AttnResched
+.ResModules
+.TaskTrapCode
+.TaskExceptCode
+.TaskExitCode
+.TaskSigAlloc
+.TaskTrapAlloc
+.MemList
+.ResourceList
+.DeviceList
+.IntrList
+.LibList
+.PortList
+.TaskReady
+.TaskWait
+.SoftInts
+.LastAlert
+.VBlankFrequency
+.PowerSupplyFrequency
+.SemaphoreList
+.KickMemPtr
+.KickTagPtr
+.KickCheckSum
+.ex_LaunchPoint
+.ex_RamLibPrivate
+.ex_EClockFrequency
+.ex_CacheControl
+.ex_TaskID
+.ex_MMULock
+.ex_DebugFlags
+.ex_MemHandlers
+.ex_MemHandler
+
+@record TAVLNode, struct AVLNode
+.avl_link
+.avl_parent
+.avl_balance
+
+
 
 @C   return 0;
 @C }
