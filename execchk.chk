@@ -13,7 +13,6 @@
 @C #include <exec/devices.h>
 @C #include <exec/io.h>
 @C #include <exec/execbase.h>
-@C #include <exec/avl.h>
 @C #include <stdio.h>
 @C #include <stddef.h>
 @C int main()
@@ -34,7 +33,6 @@
 .lh_Head
 .lh_Tail
 .lh_Type
-.l_Pad,l_pad
 
 @record TMinList,struct MinList
 .mlh_Head
@@ -108,13 +106,6 @@
 .mn_ReplyPort
 .mn_Length
 
-@record TMagicMessage, struct MagicMessage
-.mn_Node
-.mn_ReplyPort
-.mn_Length
-.mn_Magic
-.mn_Version
-
 @record TTask,struct Task
 .tc_Node
 .tc_Flags
@@ -125,8 +116,8 @@
 .tc_SigWait
 .tc_SigRecvd
 .tc_SigExcept
-.tc_TrapAlloc
-.tc_TrapAble
+//.tc_TrapAlloc
+//.tc_TrapAble
 //.tc_ETask
 .tc_ExceptData
 .tc_ExceptCode
@@ -144,9 +135,6 @@
 .stk_Lower
 .stk_Upper
 .stk_Pointer
-
-@record TStackSwapArgs,struct StackSwapArgs
-.Args
 
 @record TSemaphoreRequest,struct SemaphoreRequest
 .sr_Link
@@ -263,10 +251,6 @@
 .ex_MemHandlers
 .ex_MemHandler
 
-@record TAVLNode, struct AVLNode
-.avl_link
-.avl_parent
-.avl_balance
 
 
 

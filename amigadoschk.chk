@@ -125,8 +125,6 @@
 .fh_Func3
 .fh_Arg1
 .fh_Arg2
-.fh_Size
-.fh_Buf2
 
 @record TDosPacket,struct DosPacket
 .dp_Link
@@ -174,26 +172,26 @@
 .cli_StandardOutput
 .cli_Module
 
-//@record TDeviceList,struct DeviceList
-//.dl_Next
-//.dl_Type
-//.dl_Task
-//.dl_Lock
-//.dl_VolumeDate
-//.dl_LockList
-//.dl_DiskType
-//.dl_unused
-//.dl_Name
+@record TDeviceList,struct DeviceList
+.dl_Next
+.dl_Type
+.dl_Task
+.dl_Lock
+.dl_VolumeDate
+.dl_LockList
+.dl_DiskType
+.dl_unused
+.dl_Name
 
-//@record TDevInfo,struct DevInfo
-//.dvi_Next
-//.dvi_Type
-//.dvi_Task
-//.dvi_Lock
-//.dvi_Handler
-//.dvi_StackSize
-//.dvi_Priority
-//.dvi_Startup
+@record TDevInfo,struct DevInfo
+.dvi_Next
+.dvi_Type
+.dvi_Task
+.dvi_Lock
+.dvi_Handler
+.dvi_StackSize
+.dvi_Priority
+.dvi_Startup
 
 @record TAssignList,struct AssignList
 .al_Next
@@ -252,18 +250,18 @@
 .fssm_Environ
 .fssm_Flags
 
-//@record TDeviceNode,struct DeviceNode
-//.dn_Next
-//.dn_Type
-//.dn_Task
-//.dn_Lock
-//.dn_Handler
-//.dn_StackSize
-//.dn_Priority
-//.dn_Startup
-//.dn_SegList
-//.dn_GlobalVec
-//.dn_Name
+@record TDeviceNode,struct DeviceNode
+.dn_Next
+.dn_Type
+.dn_Task
+.dn_Lock
+.dn_Handler
+.dn_StackSize
+.dn_Priority
+.dn_Startup
+.dn_SegList
+.dn_GlobalVec
+.dn_Name
 
 @record TNotifyRequest,struct NotifyRequest
 .nr_Name
@@ -318,11 +316,7 @@
 .rn_BootProc
 .rn_ShellSegment
 .rn_Flags
-.rn_RootLock
 
-@record TCLIInfo,struct CLIInfo
-.ci_Node
-.ci_Process
 
 @record TErrorString,struct ErrorString
 .estr_Nums
