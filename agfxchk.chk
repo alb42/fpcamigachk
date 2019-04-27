@@ -10,6 +10,10 @@
 @C #include <graphics/sprite.h>
 @C #include <graphics/scale.h>
 @C #include <graphics/gfxbase.h>
+@C #include <graphics/layers.h>
+@C #include <graphics/displayinfo.h>
+@C #include <graphics/view.h>
+@C #include <graphics/rastport.h>
 @C #include <stdio.h>
 @C #include <stddef.h>
 @C int main()
@@ -87,7 +91,7 @@
 @record TVSprite,struct VSprite
 .NextVSprite
 .PrevVSprite
-.IntVSprite
+//.IntVSprite
 .ClearPath
 .OldY
 .OldX
@@ -163,7 +167,6 @@
 .Lobs,lobs
 .BitMap
 .Bounds,bounds
-.Flags
 
 @record TLayer,struct Layer
 .front
@@ -171,7 +174,7 @@
 .ClipRect
 .rp
 .bounds
-.parent
+//.parent
 .priority
 .Flags
 .SuperBitMap
@@ -205,29 +208,6 @@
 .LockLayersCount
 .BlankHook
 .LayerInfo_extra
-
-@record TChangeLayerShapeMsg,struct ChangeLayerShapeMsg
-.newshape
-.cliprect
-.shape
-
-@record TCollectPixelsLayerMsg,struct CollectPixelsLayerMsg
-.xSrc
-.ySrc
-.width
-.height
-.xDest
-.yDest
-.bm
-.layer
-.minterm
-
-@record TShapeHookMsg,struct ShapeHookMsg
-.Action
-.NewShape
-.OldShape
-.NewBounds
-.OldBounds
 
 @record TAreaInfo,struct AreaInfo
 .VctrTbl
