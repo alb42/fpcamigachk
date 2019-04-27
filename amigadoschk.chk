@@ -1,0 +1,342 @@
+@Pascal program Tests;
+@Pascal uses amigados;
+@Pascal begin
+
+@C #include <dos/dos.h>
+@C #include <dos/datetime.h>
+@C #include <dos/dosasl.h>
+@C #include <dos/dosextens.h>
+@C #include <dos/exall.h>
+@C #include <dos/filehandler.h>
+@C #include <dos/notify.h>
+@C #include <dos/rdargs.h>
+@C #include <dos/record.h>
+@C #include <dos/var.h>
+@C #include <stdio.h>
+@C #include <stddef.h>
+@C int main()
+@C {
+
+@record TDateStamp,struct DateStamp
+.ds_Days
+.ds_Minute
+.ds_Tick
+
+@record TFileInfoBlock,struct FileInfoBlock
+.fib_DiskKey
+.fib_DirEntryType
+.fib_FileName
+.fib_Protection
+.fib_EntryType
+.fib_Size
+.fib_NumBlocks
+.fib_Date
+.fib_Comment
+.fib_OwnerUID
+.fib_OwnerGID
+
+@record TInfoData,struct InfoData
+.id_NumSoftErrors
+.id_UnitNumber
+.id_DiskState
+.id_NumBlocks
+.id_NumBlocksUsed
+.id_BytesPerBlock
+.id_DiskType
+.id_VolumeNode
+.id_InUse
+
+@record _TDateTime,struct DateTime
+.dat_Stamp
+.dat_Format
+.dat_Flags
+.dat_StrDay
+.dat_StrDate
+.dat_StrTime
+
+@record TAChain,struct AChain
+.an_Child
+.an_Parent
+.an_Lock
+.an_Info
+.an_Flags
+.an_String
+
+@record TAnchorPath,struct AnchorPath
+.ap_First
+.ap_Last
+.ap_Base
+.ap_Current
+.ap_BreakBits
+.ap_FoundBreak
+.ap_Flags
+.ap_Reserved
+.ap_Strlen
+.ap_Info
+.ap_Buf
+
+@record TDosInfo,struct DosInfo
+.di_McName
+.di_DevInfo
+.di_Devices
+.di_Handlers
+.di_NetHand
+.di_DevLock
+.di_EntryLock
+.di_DeleteLock
+
+@record TProcess,struct Process
+.pr_Task
+.pr_MsgPort
+.pr_Pad
+.pr_SegList
+.pr_StackSize
+.pr_GlobVec
+.pr_TaskNum
+.pr_StackBase
+.pr_Result2
+.pr_CurrentDir
+.pr_CIS
+.pr_COS
+.pr_ConsoleTask
+.pr_FileSystemTask
+.pr_CLI
+.pr_ReturnAddr
+.pr_PktWait
+.pr_WindowPtr
+.pr_HomeDir
+.pr_Flags
+.pr_ExitCode
+.pr_ExitData
+.pr_Arguments
+.pr_LocalVars
+.pr_ShellPrivate
+.pr_CES
+
+@record TFileHandle,struct FileHandle
+.fh_Flags
+.fh_Port
+.fh_Type
+.fh_Buf
+.fh_Pos
+.fh_End
+.fh_Func1
+.fh_Func2
+.fh_Func3
+.fh_Arg1
+.fh_Arg2
+.fh_Size
+.fh_Buf2
+
+@record TDosPacket,struct DosPacket
+.dp_Link
+.dp_Port
+.dp_Action
+.dp_Status
+.dp_Status2
+.dp_BufAddr
+.dp_Type
+.dp_Res1
+.dp_Res2
+.dp_Arg1
+.dp_Arg2
+.dp_Arg3
+.dp_Arg4
+.dp_Arg5
+.dp_Arg6
+.dp_Arg7
+
+@record TStandardPacket,struct StandardPacket
+.sp_Msg
+.sp_Pkt
+
+@record TSegment,struct Segment
+.seg_Next
+.seg_UC
+.seg_Seg
+.seg_Name
+
+@record TCommandLineInterface,struct CommandLineInterface
+.cli_Result2
+.cli_SetName
+.cli_CommandDir
+.cli_ReturnCode
+.cli_CommandName
+.cli_FailLevel
+.cli_Prompt
+.cli_StandardInput
+.cli_CurrentInput
+.cli_CommandFile
+.cli_Interactive
+.cli_Background
+.cli_CurrentOutput
+.cli_DefaultStack
+.cli_StandardOutput
+.cli_Module
+
+//@record TDeviceList,struct DeviceList
+//.dl_Next
+//.dl_Type
+//.dl_Task
+//.dl_Lock
+//.dl_VolumeDate
+//.dl_LockList
+//.dl_DiskType
+//.dl_unused
+//.dl_Name
+
+//@record TDevInfo,struct DevInfo
+//.dvi_Next
+//.dvi_Type
+//.dvi_Task
+//.dvi_Lock
+//.dvi_Handler
+//.dvi_StackSize
+//.dvi_Priority
+//.dvi_Startup
+
+@record TAssignList,struct AssignList
+.al_Next
+.al_Lock
+
+@record TDevProc,struct DevProc
+.dvp_Port
+.dvp_Lock
+.dvp_Flags
+.dvp_DevNode
+
+@record TFileLock,struct FileLock
+.fl_Link
+.fl_Key
+.fl_Access
+.fl_Task
+.fl_Volume
+
+@record TExAllData,struct ExAllData
+.ed_Next
+.ed_Name
+.ed_Type
+.ed_Size
+.ed_Prot
+.ed_Days
+.ed_Mins
+.ed_Ticks
+.ed_Comment
+.ed_OwnerUID
+.ed_OwnerGID
+
+@record TDosEnvec,struct DosEnvec
+.de_TableSize
+.de_SizeBlock
+.de_SecOrg
+.de_Surfaces
+.de_SectorPerBlock
+.de_BlocksPerTrack
+.de_PreAlloc
+.de_Interleave
+.de_LowCyl
+.de_HighCyl
+.de_NumBuffers
+.de_BufMemType
+.de_MaxTransfer
+.de_Mask
+.de_BootPri
+.de_DosType
+.de_Baud
+.de_Control
+.de_BootBlocks
+
+@record TFileSysStartupMsg,struct FileSysStartupMsg
+.fssm_Unit
+.fssm_Device
+.fssm_Environ
+.fssm_Flags
+
+//@record TDeviceNode,struct DeviceNode
+//.dn_Next
+//.dn_Type
+//.dn_Task
+//.dn_Lock
+//.dn_Handler
+//.dn_StackSize
+//.dn_Priority
+//.dn_Startup
+//.dn_SegList
+//.dn_GlobalVec
+//.dn_Name
+
+@record TNotifyRequest,struct NotifyRequest
+.nr_Name
+.nr_FullName
+.nr_UserData
+.nr_Flags
+.nr_stuff.nr_Msg
+.nr_stuff.nr_Signal.nr_Task
+.nr_stuff.nr_Signal.nr_SignalNum
+.nr_MsgCount
+.nr_Handler
+
+@record TNotifyMessage,struct NotifyMessage
+.nm_ExecMessage
+.nm_Class
+.nm_Code
+.nm_NReq
+
+@record TCSource,struct CSource
+.CS_Buffer
+.CS_Length
+.CS_CurChr
+
+@record TRDArgs,struct RDArgs
+.RDA_Source
+.RDA_DAList
+.RDA_Buffer
+.RDA_BufSiz
+.RDA_ExtHelp
+.RDA_Flags
+
+@record TRecordLock,struct RecordLock
+.rec_FH
+.rec_Offset
+.rec_Length
+.rec_Mode
+
+@record TLocalVar,struct LocalVar
+.lv_Node
+.lv_Flags
+.lv_Value
+.lv_Len
+
+@record TRootNode,struct RootNode
+.rn_TaskArray
+.rn_ConsoleSegment
+.rn_Time
+.rn_RestartSeg
+.rn_Info
+.rn_FileHandlerSegment
+.rn_CliList
+.rn_BootProc
+.rn_ShellSegment
+.rn_Flags
+.rn_RootLock
+
+@record TCLIInfo,struct CLIInfo
+.ci_Node
+.ci_Process
+
+@record TErrorString,struct ErrorString
+.estr_Nums
+.estr_Strings
+
+@record TDosLibrary,struct DosLibrary
+.dl_lib
+.dl_Root
+.dl_Errors
+.dl_TimeReq
+.dl_UtilityBase
+.dl_IntuitionBase
+
+@C   return 0;
+@C }
+
+@Pascal end.

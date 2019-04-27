@@ -21,7 +21,11 @@ execchk.diff: execchk.x execchk.y
 	./execchk.x >c.out
 	./execchk.y >pas.out
 	$(DIFF) pas.out c.out >execchk.diff
-	ls -s execchk.diff
+amigadoschk.diff: amigadoschk.x amigadoschk.y
+	./amigadoschk.x >c.out
+	./amigadoschk.y >pas.out
+	$(DIFF) pas.out c.out >amigadoschk.diff
 clean:
 	rm -rf *.out *.o *.c *.pas *.x *.y *.diff
-all: clean execchk.diff
+all: clean execchk.diff amigadoschk.diff
+	ls -s *.diff
