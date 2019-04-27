@@ -29,7 +29,11 @@ agfxchk.diff: agfxchk.x agfxchk.y
 	./agfxchk.x >c.out
 	./agfxchk.y >pas.out
 	$(DIFF) pas.out c.out >agfxchk.diff
+intuitionchk.diff: intuitionchk.x intuitionchk.y
+	./intuitionchk.x >c.out
+	./intuitionchk.y >pas.out
+	$(DIFF) pas.out c.out >intuitionchk.diff
 clean:
 	rm -rf *.out *.o *.c *.pas *.x *.y *.diff
-all: clean execchk.diff amigadoschk.diff agfxchk.diff
+all: clean execchk.diff amigadoschk.diff agfxchk.diff intuitionchk.diff
 	ls -s *.diff
