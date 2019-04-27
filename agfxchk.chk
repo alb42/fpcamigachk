@@ -1,0 +1,678 @@
+@Pascal program Tests;
+@Pascal uses agraphics;
+@Pascal begin
+
+@C #include <graphics/gfx.h>
+@C #include <graphics/text.h>
+@C #include <graphics/gels.h>
+@C #include <graphics/clip.h>
+@C #include <graphics/copper.h>
+@C #include <graphics/sprite.h>
+@C #include <graphics/scale.h>
+@C #include <graphics/gfxbase.h>
+@C #include <stdio.h>
+@C #include <stddef.h>
+@C int main()
+@C {
+
+@record TBitMap,struct BitMap
+.BytesPerRow
+.Rows
+.Flags
+.Depth
+.Planes
+
+@record TTextAttr,struct TextAttr
+.ta_Name
+.ta_YSize
+.ta_Style
+.ta_Flags
+
+@record TTTextAttr,struct TTextAttr
+.tta_Name
+.tta_YSize
+.tta_Style
+.tta_Flags
+.tta_Tags
+
+@record TTextFont,struct TextFont
+.tf_Message
+.tf_YSize
+.tf_Style
+.tf_Flags
+.tf_XSize
+.tf_Baseline
+.tf_BoldSmear
+.tf_Accessors
+.tf_LoChar
+.tf_HiChar
+.tf_CharData
+.tf_Modulo
+.tf_CharLoc
+.tf_CharSpace
+.tf_CharKern
+
+@record TTextFontExtension,struct TextFontExtension
+.tfe_MatchWord
+.tfe_Flags0
+.tfe_Flags1
+.tfe_BackPtr
+.tfe_OrigReplyPort
+.tfe_Tags
+.tfe_OFontPatchS
+.tfe_OFontPatchK
+
+@record TColorFontColors,struct ColorFontColors
+.cfc_Reserved
+.cfc_Count
+.cfc_ColorTable
+
+@record TColorTextFont,struct ColorTextFont
+.ctf_TF
+.ctf_Flags
+.ctf_Depth
+.ctf_FgColor
+.ctf_Low
+.ctf_High
+.ctf_PlanePick
+.ctf_PlaneOnOff
+.ctf_ColorFontColors
+.ctf_CharData
+
+@record TTextExtent,struct TextExtent
+.te_Width
+.te_Height
+.te_Extent
+
+@record TVSprite,struct VSprite
+.NextVSprite
+.PrevVSprite
+.IntVSprite
+.ClearPath
+.OldY
+.OldX
+.Flags
+.Y
+.X
+.Height
+.Width
+.Depth
+.MeMask
+.HitMask
+.ImageData
+.BorderLine
+.CollMask
+.SprColors
+.VSBob
+.PlanePick
+.PlaneOnOff
+.VUserExt
+
+@record TDBufPacket,struct DBufPacket
+.BufY
+.BufX
+.BufPath
+.BufBuffer
+
+@record TBob,struct Bob
+.Flags
+.SaveBuffer
+.ImageShadow
+.Before
+.After
+.BobVSprite
+.BobComp
+.DBuffer
+.BUserExt
+
+@record TAnimComp,struct AnimComp
+.Flags
+.Timer
+.TimeSet
+.NextComp
+.PrevComp
+.NextSeq
+.PrevSeq
+.AnimCRoutine
+.YTrans
+.XTrans
+.HeadOb
+.AnimBob
+
+@record TAnimOb,struct AnimOb
+.NextOb
+.PrevOb
+.Clock
+.AnOldY
+.AnOldX
+.AnY
+.AnX
+.YVel
+.XVel
+.YAccel
+.XAccel
+.RingYTrans
+.RingXTrans
+.AnimORoutine
+.HeadComp
+.AUserExt
+
+@record TClipRect,struct ClipRect
+.Next
+.Prev,prev
+.Lobs,lobs
+.BitMap
+.Bounds,bounds
+.Flags
+
+@record TLayer,struct Layer
+.front
+.back
+.ClipRect
+.rp
+.bounds
+.parent
+.priority
+.Flags
+.SuperBitMap
+.SuperClipRect
+.Window
+.Scroll_X
+.Scroll_Y
+.cr
+.cr2
+.crnew
+.SuperSaveClipRects
+._cliprects
+.LayerInfo
+.Lock
+.BackFill
+.ClipRegion
+.saveClipRects
+.Width
+.Height
+.DamageList
+
+@record TLayer_Info,struct Layer_Info
+.top_layer
+.check_lp
+.obs
+.FreeClipRects
+.Lock
+.gs_Head
+.Flags
+.fatten_count
+.LockLayersCount
+.BlankHook
+.LayerInfo_extra
+
+@record TChangeLayerShapeMsg,struct ChangeLayerShapeMsg
+.newshape
+.cliprect
+.shape
+
+@record TCollectPixelsLayerMsg,struct CollectPixelsLayerMsg
+.xSrc
+.ySrc
+.width
+.height
+.xDest
+.yDest
+.bm
+.layer
+.minterm
+
+@record TShapeHookMsg,struct ShapeHookMsg
+.Action
+.NewShape
+.OldShape
+.NewBounds
+.OldBounds
+
+@record TAreaInfo,struct AreaInfo
+.VctrTbl
+.VctrPtr
+.FlagTbl
+.FlagPtr
+.Count
+.MaxCount
+.FirstX
+.FirstY
+
+@record TTmpRas,struct TmpRas
+.RasPtr
+.Size
+
+@record TGelsInfo,struct GelsInfo
+.sprRsrvd
+.Flags
+.gelHead
+.gelTail
+.nextLine
+.lastColor
+.collHandler
+.leftmost
+.rightmost
+.topmost
+.bottommost
+.firstBlissObj
+.lastBlissObj
+
+@record TRastPort,struct RastPort
+.Layer
+.BitMap
+.AreaPtrn
+.TmpRas
+.AreaInfo
+.GelsInfo
+.Mask
+.FgPen
+.BgPen
+.AOlPen
+.DrawMode
+.AreaPtSz
+.linpatcnt
+.Flags
+.LinePtrn
+.cp_x
+.cp_y
+.minterms
+.PenWidth
+.PenHeight
+.Font
+.AlgoStyle
+.TxFlags
+.TxHeight
+.TxWidth
+.TxBaseline
+.TxSpacing
+.RP_User
+
+@record TExtendedNode,struct ExtendedNode
+.xln_Succ
+.xln_Pred
+.xln_Type
+.xln_Pri
+.xln_Name
+.xln_Subsystem
+.xln_Subtype
+.xln_Library
+.xln_Init
+
+@record TAnalogSignalInterval,struct AnalogSignalInterval
+.asi_Start
+.asi_Stop
+
+@record TSpecialMonitor,struct SpecialMonitor
+.spm_Node
+.spm_Flags
+.do_monitor
+.hblank
+.vblank
+.hsync
+.vsync
+
+@record TMonitorSpec,struct MonitorSpec
+.ms_Node
+.ms_Flags
+.ratioh
+.ratiov
+.total_rows
+.total_colorclocks
+.DeniseMaxDisplayColumn
+.BeamCon0
+.min_row
+.ms_Special
+.ms_OpenCount
+.ms_transform
+.ms_translate
+.ms_scale
+.ms_xoffset
+.ms_yoffset
+.ms_LegalView
+.ms_maxoscan
+.ms_videoscan
+.DeniseMinDisplayColumn
+.DisplayCompatible
+.DisplayInfoDataBase
+.DisplayInfoDataBaseSemaphore
+.ms_MrgCop
+.ms_LoadView
+.ms_KillView
+
+@record TRasInfo,struct RasInfo
+.Next
+.BitMap
+.RxOffset
+.RyOffset
+
+@record TCprList,struct cprlist
+.Next
+.start
+.MaxCount
+
+@record TUCopList,struct UCopList
+.Next
+.FirstCopList
+.CopList
+
+@record TCopInit,struct copinit
+.vsync_hblank
+.diagstrt
+.fm0
+.diwstart
+.bplcon2
+.sprfix
+.sprstrtup
+.wait14
+.norm_hblank
+.jump
+.wait_forever
+.sprstop
+
+@record TView,struct View
+.ViewPort
+.LOFCprList
+.SHFCprList
+.DyOffset
+.DxOffset
+.Modes
+
+@record TViewExtra,struct ViewExtra
+.n
+.View
+.Monitor
+.TopLine
+
+@record TCopIns,struct CopIns
+.OpCode
+.nxtlist,u3.nxtlist
+.VWaitPos,u3.u4.u1.VWaitPos
+.DestAddr,u3.u4.u1.DestAddr
+.HWaitPos,u3.u4.u2.HWaitPos
+.DestData,u3.u4.u2.DestData
+
+@record TCopList,struct CopList
+.Next
+._CopList
+._ViewPort
+.CopIns
+.CopPtr
+.CopLStart
+.CopSStart
+.Count
+.MaxCount
+.DyOffset
+.SLRepeat
+.Flags
+
+@record TViewPort,struct ViewPort
+.Next
+.ColorMap
+.DspIns
+.SprIns
+.ClrIns
+.UCopIns
+.DWidth
+.DHeight
+.DxOffset
+.DyOffset
+.Modes
+.SpritePriorities
+.RasInfo
+
+@record TViewPortExtra,struct ViewPortExtra
+.n
+.ViewPort
+.DisplayClip
+.VecTable
+.DriverData
+.Flags
+.Origin
+.cop1ptr
+.cop2ptr
+
+@record TPaletteExtra,struct PaletteExtra
+.pe_Semaphore
+.pe_FirstFree
+.pe_NFree
+.pe_FirstShared
+.pe_NShared
+.pe_RefCnt
+.pe_AllocList
+.pe_ViewPort
+.pe_SharableColors
+
+@record TColorMap,struct ColorMap
+.Flags
+.Type_,Type
+.Count
+.ColorTable
+.cm_vpe
+.LowColorBits
+.TransparencyPlane
+.SpriteResolution
+.SpriteResDefault
+.AuxFlags
+.cm_vp
+.NormalDisplayInfo
+.CoerceDisplayInfo
+.cm_batch_items
+.VPModeID
+.PalExtra
+.SpriteBase_Even
+.SpriteBase_Odd
+.Bp_0_base
+.Bp_1_base
+
+@record TDBufInfo,struct DBufInfo
+.dbi_Link1
+.dbi_Count1
+.dbi_SafeMessage
+.dbi_UserData1
+.dbi_Link2
+.dbi_Count2
+.dbi_DispMessage
+.dbi_UserData2
+.dbi_MatchLong
+.dbi_CopPtr1
+.dbi_CopPtr2
+.dbi_CopPtr3
+.dbi_BeamPos1
+.dbi_BeamPos2
+
+@record TQueryHeader,struct QueryHeader
+.StructID
+.DisplayID
+.SkipID
+.Length
+
+@record TDisplayInfo,struct DisplayInfo
+.Header
+.NotAvailable
+.PropertyFlags
+.Resolution
+.PixelSpeed
+.NumStdSprites
+.PaletteRange
+.SpriteResolution
+.RedBits
+.GreenBits
+.BlueBits
+
+@record TDimensionInfo,struct DimensionInfo
+.Header
+.MaxDepth
+.MinRasterWidth
+.MinRasterHeight
+.MaxRasterWidth
+.MaxRasterHeight
+.Nominal
+.MaxOScan
+.VideoOScan
+.TxtOScan
+.StdOScan
+
+@record TMonitorInfo,struct MonitorInfo
+.Header
+.Mspc
+.ViewPosition
+.ViewResolution
+.ViewPositionRange
+.TotalRows
+.TotalColorClocks
+.MinRow
+.Compatibility
+.MouseTicks
+.DefaultViewPosition
+.PreferredModeID
+
+@record TNameInfo,struct NameInfo
+.Header
+.Name
+
+@record TVecInfo,struct VecInfo
+.Header
+.Vec
+.Data
+.Type_,Type
+
+@record TSimpleSprite,struct SimpleSprite
+.posctldata
+.height
+.x
+.y
+.num
+
+@record TExtSprite,struct ExtSprite
+.es_SimpleSprite
+.es_wordwidth
+.es_flags
+
+@record TBitScaleArgs,struct BitScaleArgs
+.bsa_SrcX
+.bsa_SrcY
+.bsa_SrcWidth
+.bsa_SrcHeight
+.bsa_XSrcFactor
+.bsa_YSrcFactor
+.bsa_DestX
+.bsa_DestY
+.bsa_DestWidth
+.bsa_DestHeight
+.bsa_XDestFactor
+.bsa_YDestFactor
+.bsa_SrcBitMap
+.bsa_DestBitMap
+.bsa_Flags
+.bsa_XDDA
+.bsa_YDDA
+
+@record TGfxBase,struct GfxBase
+.LibNode
+.ActiView
+.copinit
+.cia
+.blitter
+.LOFlist
+.SHFlist
+.blthd
+.blttl
+.bsblthd
+.bsblttl
+.vbsrv
+.timsrv
+.bltsrv
+.TextFonts
+.DefaultFont
+.Modes
+.VBlank
+.Debug
+.BeamSync
+.system_bplcon0
+.SpriteReserved
+.bytereserved
+.Flags
+.BlitLock
+.BlitNest
+.BlitWaitQ
+.BlitOwner
+.TOF_WaitQ
+.DisplayFlags
+.SimpleSprites
+.MaxDisplayRow
+.MaxDisplayColumn
+.NormalDisplayRows
+.NormalDisplayColumns
+.NormalDPMX
+.NormalDPMY
+.LastChanceMemory
+.LCMptr
+.MicrosPerLine
+.MinDisplayColumn
+.ChipRevBits0
+.MemType
+.crb_reserved
+.monitor_id
+.hedley
+.hedley_sprites
+.hedley_sprites1
+.hedley_count
+.hedley_flags
+.hedley_tmp
+.hash_table
+.current_tot_rows
+.current_tot_cclks
+.hedley_hint
+.hedley_hint2
+.nreserved
+.a2024_sync_raster
+.control_delta_pal
+.control_delta_ntsc
+.current_monitor
+.MonitorList
+.default_monitor
+.MonitorListSemaphore
+.DisplayInfoDataBase
+.TopLine
+.ActiViewCprSemaphore
+.utilityBase,UtilBase
+.ExecBase
+.bwshifts
+.StrtFetchMasks
+.StopFetchMasks
+.Overrun
+.RealStops
+.SpriteWidth
+.SpriteFMode
+.SoftSprites
+.arraywidth
+.DefaultSpriteWidth
+.SprMoveDisable
+.WantChips
+.BoardMemType
+.Bugs
+.gb_LayersBase
+.ColorMask
+.IVector
+.IData
+.SpecialCounter
+.DBList
+.MonitorFlags
+.ScanDoubledSprites
+.BP3Bits
+.MonitorVBlank
+.natural_monitor
+.ProgData
+.ExtSprites
+.pad3
+.GfxFlags
+.VBCounter
+.HashTableSemaphore
+.ChunkyToPlanarPtr
+.HWEmul
+
+@C   return 0;
+@C }
+
+@Pascal end.
