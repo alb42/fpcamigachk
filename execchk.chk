@@ -1,5 +1,5 @@
 @Pascal program Tests;
-@Pascal uses exec,timer, utility, clipboard;
+@Pascal uses exec,timer, utility, clipboard,serial;
 @Pascal begin
 
 @C #include <exec/lists.h>
@@ -15,6 +15,7 @@
 @C #include <exec/execbase.h>
 @C #include <devices/timer.h>
 @C #include <devices/clipboard.h>
+@C #include <devices/serial.h>
 @C #include <stdio.h>
 @C #include <stddef.h>
 @C int main()
@@ -285,6 +286,24 @@
 .io_Data
 .io_Offset
 .io_ClipID
+
+@record TIOTArray,struct IOTArray
+.TermArray0
+.TermArray1
+
+@record TIOExtSer,struct IOExtSer
+.IOSer
+.io_CtlChar
+.io_RBufLen
+.io_ExtFlags
+.io_Baud
+.io_BrkTime
+.io_TermArray
+.io_ReadLen
+.io_WriteLen
+.io_StopBits
+.io_SerFlags
+.io_Status
 
 
 @C   return 0;
