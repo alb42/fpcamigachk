@@ -1,5 +1,5 @@
 @Pascal program Tests;
-@Pascal uses intuition;
+@Pascal uses intuition, inputevent;
 @Pascal begin
 
 @C #include <intuition/intuition.h>
@@ -524,11 +524,45 @@
 .GadgetInfo
 .EditOp
 
+@record TIEPointerPixel,struct IEPointerPixel
+.iepp_Screen
+.iepp_Position.X
+.iepp_Position.Y
 
+@record TIEPointerTablet,struct IEPointerTablet
+.iept_Range.X
+.iept_Range.Y
+.iept_Value.X
+.iept_Value.Y
+.iept_Pressure
 
+@record TIENewTablet,struct IENewTablet
+.ient_CallBack
+.ient_ScaledX
+.ient_ScaledY
+.ient_ScaledXFraction
+.ient_ScaledYFraction
+.ient_TabletX
+.ient_TabletY
+.ient_RangeX
+.ient_RangeY
+.ient_TagList
 
-
-
+@record TInputEvent,struct InputEvent
+.ie_NextEvent
+.ie_Class
+.ie_SubClass
+.ie_Code
+.ie_Qualifier
+.ie_position.ie_xy
+.ie_position.ie_xy.ie_x
+.ie_position.ie_xy.ie_y
+.ie_position.ie_addr
+.ie_position.ie_dead.ie_prev1DownCode
+.ie_position.ie_dead.ie_prev1DownQual
+.ie_position.ie_dead.ie_prev2DownCode
+.ie_position.ie_dead.ie_prev2DownQual
+.ie_TimeStamp
 
 
 

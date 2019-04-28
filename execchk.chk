@@ -18,6 +18,10 @@
 @C int main()
 @C {
 
+@record TTagItem,struct TagItem
+.ti_Tag
+.ti_Data
+
 @record TNode,struct Node
 .ln_Succ
 .ln_Pred
