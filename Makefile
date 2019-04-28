@@ -1,39 +1,32 @@
 .PHONY: all
 .DEFAULT_GOAL:=all
+.PRECIOUS: %.x %.y
+
+RESULTS=execchk.diff amigadoschk.diff agfxchk.diff intuitionchk.diff
+
 CC=gcc
 FPC=fpc
 H2PAS=h2paschk
 DIFF=diff
 
 %.c: %.chk
+	@echo
+	@echo "#### Start checking $<"
 	$(H2PAS) $<
 %.pas: %.chk
 	$(H2PAS) $<
-%.o: %.c
-	$(CC) -c -o $@ $<
-%.x: %.o
-	$(CC) -o $@ $<
-	rm *.o
+%.x: %.c
+	$(CC) -o $@x $<
+	@./$@x >$@
+	@rm -rf *.o *.xx
 %.y: %.pas
-	$(FPC) -B -o$@ $<
-	rm *.o
-execchk.diff: execchk.x execchk.y
-	./execchk.x >c.out
-	./execchk.y >pas.out
-	$(DIFF) pas.out c.out >execchk.diff
-amigadoschk.diff: amigadoschk.x amigadoschk.y
-	./amigadoschk.x >c.out
-	./amigadoschk.y >pas.out
-	$(DIFF) pas.out c.out >amigadoschk.diff
-agfxchk.diff: agfxchk.x agfxchk.y
-	./agfxchk.x >c.out
-	./agfxchk.y >pas.out
-	$(DIFF) pas.out c.out >agfxchk.diff
-intuitionchk.diff: intuitionchk.x intuitionchk.y
-	./intuitionchk.x >c.out
-	./intuitionchk.y >pas.out
-	$(DIFF) pas.out c.out >intuitionchk.diff
+	$(FPC) -B -o$@y $<
+	@./$@y >$@
+	@rm -rf *.o *.yy
+%.diff: %.x %.y
+	$(DIFF) $^ >$@
 clean:
-	rm -rf *.out *.o *.c *.pas *.x *.y *.diff
-all: clean execchk.diff amigadoschk.diff agfxchk.diff intuitionchk.diff
-	ls -s *.diff
+	@rm -rf *.o *.c *.pas *.x *.y *.xx *.yy *.diff
+all: clean $(RESULTS)
+	@ls -s *.diff
+	@echo "### All done"
