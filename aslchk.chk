@@ -1,0 +1,64 @@
+@Pascal program Tests;
+@Pascal uses asl;
+@Pascal begin
+
+@C #include <libraries/asl.h>
+@C #include <stdio.h>
+@C #include <stddef.h>
+@C int main()
+@C {
+
+@record TFileRequester,struct FileRequester
+.fr_File
+.fr_Drawer
+.fr_LeftEdge
+.fr_TopEdge
+.fr_Width
+.fr_Height
+.fr_NumArgs
+.fr_ArgList
+.fr_UserData
+.fr_Pattern
+
+@record TFontRequester,struct FontRequester
+.fo_Attr
+.fo_FrontPen
+.fo_BackPen
+.fo_DrawMode
+.fo_UserData
+.fo_LeftEdge
+.fo_TopEdge
+.fo_Width
+.fo_Height
+.fo_TAttr
+
+@record TScreenModeRequester,struct ScreenModeRequester
+.sm_DisplayID
+.sm_DisplayWidth
+.sm_DisplayHeight
+.sm_DisplayDepth
+.sm_OverscanType
+.sm_AutoScroll
+.sm_BitMapWidth
+.sm_BitMapHeight
+.sm_LeftEdge
+.sm_TopEdge
+.sm_Width
+.sm_Height
+.sm_InfoOpened
+.sm_InfoLeftEdge
+.sm_InfoTopEdge
+.sm_InfoWidth
+.sm_InfoHeight
+.sm_UserData
+
+@record TDisplayMode,struct DisplayMode
+.dm_Node
+.dm_DimensionInfo
+.dm_PropertyFlags
+
+
+@C   return 0;
+@C }
+
+@Pascal end.
