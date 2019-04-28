@@ -2,7 +2,7 @@
 .DEFAULT_GOAL:=all
 .PRECIOUS: %.x %.y
 
-RESULTS=execchk.diff amigadoschk.diff agfxchk.diff intuitionchk.diff utilitychk.diff asl.diff
+RESULTS=execchk.diff amigadoschk.diff agfxchk.diff intuitionchk.diff utilitychk.diff aslchk.diff
 
 CC=gcc
 FPC=fpc
