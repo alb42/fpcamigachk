@@ -1,5 +1,5 @@
 @Pascal program Tests;
-@Pascal uses exec,timer;
+@Pascal uses exec,timer, utility;
 @Pascal begin
 
 @C #include <exec/lists.h>
