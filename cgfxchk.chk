@@ -1,0 +1,33 @@
+@Pascal program Tests;
+@Pascal uses cybergraphics;
+@Pascal begin
+
+@C #include <cybergraphx/cybergraphics.h>
+@C #include <stdio.h>
+@C #include <stddef.h>
+@C int main()
+@C {
+
+@record TCyberModeNode,struct CyberModeNode
+.Node
+.ModeText
+.DisplayID
+.Width
+.Height
+.Depth
+.DisplayTagList
+
+@record TCDrawMsg,struct CDrawMsg
+.cdm_MemPtr
+.cdm_offx
+.cdm_offy
+.cdm_xsize
+.cdm_ysize
+.cdm_BytesPerRow
+.cdm_BytesPerPix
+.cdm_ColorModel
+
+@C   return 0;
+@C }
+
+@Pascal end.

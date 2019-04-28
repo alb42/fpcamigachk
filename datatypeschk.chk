@@ -1,0 +1,231 @@
+@Pascal program Tests;
+@Pascal uses datatypes;
+@Pascal begin
+
+@C #include <datatypes/datatypes.h>
+@C #include <datatypes/datatypesclass.h>
+@C #include <datatypes/pictureclass.h>
+@C #include <datatypes/soundclass.h>
+@C #include <datatypes/textclass.h>
+@C #include <datatypes/animationclass.h>
+@C #include <stdio.h>
+@C #include <stddef.h>
+@C int main()
+@C {
+
+@record TDataTypeHeader,struct DataTypeHeader
+.dth_Name
+.dth_BaseName
+.dth_Pattern
+.dth_Mask
+.dth_GroupID
+.dth_ID
+.dth_MaskLen
+.dth_Flags
+.dth_Priority
+
+@record TDTHookContext,struct DTHookContext
+.dthc_SysBase
+.dthc_DOSBase
+.dthc_IFFParseBase
+.dthc_UtilityBase
+.dthc_Lock
+.dthc_FIB
+.dthc_FileHandle
+.dthc_IFF
+.dthc_Buffer
+.dthc_BufferLength
+
+@record TTool,struct Tool
+.tn_Which
+.tn_Flags
+.tn_Program
+
+@record TDataType,struct DataType
+.dtn_Node1
+.dtn_Node2
+.dtn_Header
+.dtn_ToolList
+.dtn_FunctionName
+.dtn_AttrList
+.dtn_Length
+
+@record TToolNode,struct ToolNode
+.tn_Node
+.tn_Tool
+.tn_Length
+
+@record TDTSpecialInfo,struct DTSpecialInfo
+.si_Lock
+.si_Flags
+.si_TopVert
+.si_VisVert
+.si_TotVert
+.si_OTopVert
+.si_VertUnit
+.si_TopHoriz
+.si_VisHoriz
+.si_TotHoriz
+.si_OTopHoriz
+.si_HorizUnit
+
+@record TDTMethod,struct DTMethod
+.dtm_Label
+.dtm_Command
+.dtm_Method
+
+@record TFrameInfo,struct FrameInfo
+.fri_PropertyFlags
+.fri_Resolution
+.fri_RedBits
+.fri_GreenBits
+.fri_BlueBits
+.fri_Dimensions.Width
+.fri_Dimensions.Height
+.fri_Dimensions.Depth
+.fri_Screen
+.fri_ColorMap
+.fri_Flags
+
+@record TdtGeneral,struct dtGeneral
+.MethodID
+.dtg_GInfo
+
+@record TdtSelect,struct dtSelect
+.MethodID
+.dts_GInfo
+.dts_Select
+
+@record TdtFrameBox,struct dtFrameBox
+.MethodID
+.dtf_GInfo
+.dtf_ContentsInfo
+.dtf_FrameInfo
+.dtf_SizeFrameInfo
+.dtf_FrameFlags
+
+@record TdtGoto,struct dtGoto
+.MethodID
+.dtg_GInfo
+.dtg_NodeName
+.dtg_AttrList
+
+@record TdtTrigger,struct dtTrigger
+.MethodID
+.dtt_GInfo
+.dtt_Function
+.dtt_Data
+
+@record TdtDraw,struct dtDraw
+.MethodID
+.dtd_RPort
+.dtd_Left
+.dtd_Top
+.dtd_Width
+.dtd_Height
+.dtd_TopHoriz
+.dtd_TopVert
+.dtd_AttrList
+
+@record TdtReleaseDrawInfo,struct dtReleaseDrawInfo
+.MethodID
+.dtr_Handle
+
+@record TdtWrite,struct dtWrite
+.MethodID
+.dtw_GInfo
+.dtw_FileHandle
+.dtw_Mode
+.dtw_AttrList
+
+@record TBitMapHeader,struct BitMapHeader
+.bmh_Width
+.bmh_Height
+.bmh_Left
+.bmh_Top
+.bmh_Depth
+.bmh_Masking
+.bmh_Compression
+.bmh_Transparent
+.bmh_XAspect
+.bmh_YAspect
+.bmh_PageWidth
+.bmh_PageHeight
+
+@record TColorRegister,struct ColorRegister
+.red
+.green
+.blue
+
+@record TVoiceHeader,struct VoiceHeader
+.vh_OneShotHiSamples
+.vh_RepeatHiSamples
+.vh_SamplesPerHiCycle
+.vh_SamplesPerSec
+.vh_Octaves
+.vh_Compression
+.vh_Volume
+
+@record TLine,struct Line
+.ln_Link
+.ln_Text
+.ln_TextLen
+.ln_XOffset
+.ln_YOffset
+.ln_Width
+.ln_Height
+.ln_Flags
+.ln_FgPen
+.ln_BgPen
+.ln_Style
+.ln_Data
+
+@record TAnimHeader,struct AnimHeader
+.ah_Operation
+.ah_Mask
+.ah_Height
+.ah_Width
+.ah_Left
+.ah_Top
+.ah_AbsTime
+.ah_RelTime
+.ah_Interleave
+.ah_Flags
+
+@record TadtFrame,struct adtFrame
+.MethodID
+.alf_TimeStamp
+.alf_Frame
+.alf_Duration
+.alf_BitMap
+.alf_CMap
+.alf_Sample
+.alf_SampleLength
+.alf_Period
+.alf_UserData
+
+@record TadtNewFormatFrame,struct adtNewFormatFrame
+.MethodID
+.alf_TimeStamp
+.alf_Frame
+.alf_Duration
+.alf_BitMap
+.alf_CMap
+.alf_Sample
+.alf_SampleLength
+.alf_Period
+.alf_UserData
+.alf_Size
+.alf_LeftSample
+.alf_RightSample
+.alf_SamplesPerSec
+
+@record TadtStart,struct adtStart
+.MethodID
+.asa_Frame
+
+
+@C   return 0;
+@C }
+
+@Pascal end.

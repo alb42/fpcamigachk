@@ -1,0 +1,51 @@
+@Pascal program Tests;
+@Pascal uses diskfont;
+@Pascal begin
+
+@C #include <diskfont/diskfont.h>
+@C #include <stdio.h>
+@C #include <stddef.h>
+@C int main()
+@C {
+
+@record TFontContents,struct FontContents
+.fc_FileName
+.fc_YSize
+.fc_Style
+.fc_Flags
+
+@record TTFontContents,struct TFontContents
+.tfc_FileName
+.tfc_TagCount
+.tfc_YSize
+.tfc_Style
+.tfc_Flags
+
+@record TFontContentsHeader,struct FontContentsHeader
+.fch_FileID
+.fch_NumEntries
+
+@record TDiskFontHeader,struct DiskFontHeader
+.dfh_DF
+.dfh_FileID
+.dfh_Revision
+.dfh_Segment
+.dfh_Name
+.dfh_TF
+
+@record TAvailFonts,struct AvailFonts
+.af_Type
+.af_Attr
+
+@record TTAvailFonts,struct TAvailFonts
+.taf_Type
+.taf_Attr
+
+@record TAvailFontsHeader,struct AvailFontsHeader
+.afh_NumEntries
+
+
+@C   return 0;
+@C }
+
+@Pascal end.
