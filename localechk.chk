@@ -1,0 +1,60 @@
+@Pascal program Tests;
+@Pascal uses Locale;
+@Pascal begin
+
+@C #include <libraries/locale.h>
+@C #include <stdio.h>
+@C #include <stddef.h>
+@C int main()
+@C {
+
+@record TLocaleBase,struct LocaleBase
+.lb_LibNode
+.lb_SysPatches
+
+@record TLocale,struct Locale
+.loc_LocaleName
+.loc_LanguageName
+.loc_PrefLanguages
+.loc_Flags
+.loc_CodeSet
+.loc_CountryCode
+.loc_TelephoneCode
+.loc_GMTOffset
+.loc_MeasuringSystem
+.loc_CalendarType
+.loc_DateTimeFormat
+.loc_DateFormat
+.loc_TimeFormat
+.loc_ShortDateTimeFormat
+.loc_ShortDateFormat
+.loc_ShortTimeFormat
+.loc_DecimalPoint
+.loc_GroupSeparator
+.loc_FracGroupSeparator
+.loc_Grouping
+.loc_FracGrouping
+.loc_MonDecimalPoint
+.loc_MonGroupSeparator
+.loc_MonFracGroupSeparator
+.loc_MonGrouping
+.loc_MonFracGrouping
+.loc_MonFracDigits
+.loc_MonIntFracDigits
+.loc_MonCS
+.loc_MonSmallCS
+.loc_MonIntCS
+.loc_MonPositiveSign
+.loc_MonPositiveSpaceSep
+.loc_MonPositiveSignPos
+.loc_MonPositiveCSPos
+.loc_MonNegativeSign
+.loc_MonNegativeSpaceSep
+.loc_MonNegativeSignPos
+.loc_MonNegativeCSPos
+
+
+@C   return 0;
+@C }
+
+@Pascal end.
