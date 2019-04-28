@@ -499,8 +499,6 @@
 .cl_SubclassCount
 .cl_ObjectCount
 .cl_Flags
-.cl_ObjectSize
-.cl_MemoryPool
 
 @record T_Object,struct _Object
 .o_Node
