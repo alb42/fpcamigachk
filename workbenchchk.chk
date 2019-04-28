@@ -5,7 +5,6 @@
 @C #include <workbench/icon.h>
 @C #include <workbench/startup.h>
 @C #include <workbench/workbench.h>
-@C #include <workbench/handler.h>
 @C #include <stdio.h>
 @C #include <stddef.h>
 @C int main()
@@ -151,13 +150,6 @@
 .tim_Length
 .tim_Action
 .tim_Prompt
-
-@record TWBHandlerMessage,struct WBHandlerMessage
-.wbhm_Message
-.wbhm_Type
-.wbhm_Data.Open.Name
-.wbhm_Data.Update.Name
-.wbhm_Data.Update.Type_,wbhm_Data.Update.Type
 
 @C   return 0;
 @C }
