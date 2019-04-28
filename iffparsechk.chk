@@ -1,0 +1,53 @@
+@Pascal program Tests;
+@Pascal uses IFFParse;
+@Pascal begin
+
+@C #include <libraries/iffparse.h>
+@C #include <stdio.h>
+@C #include <stddef.h>
+@C int main()
+@C {
+
+@record TIFFHandle,struct IFFHandle
+.iff_Stream
+.iff_Flags
+.iff_Depth
+
+@record TIFFStreamCmd,struct IFFStreamCmd
+.sc_Command
+.sc_Buf
+.sc_NBytes
+
+@record TContextNode,struct ContextNode
+.cn_Node
+.cn_ID
+.cn_Type
+.cn_Size
+.cn_Scan
+
+@record TLocalContextItem,struct LocalContextItem
+.lci_Node
+.lci_ID
+.lci_Type
+.lci_Ident
+
+@record TStoredProperty,struct StoredProperty
+.sp_Size
+.sp_Data
+
+@record TCollectionItem,struct CollectionItem
+.ci_Next
+.ci_Size
+.ci_Data
+
+@record TClipboardHandle,struct ClipboardHandle
+.cbh_Req
+.cbh_CBport
+.cbh_SatisfyPort
+
+
+
+@C   return 0;
+@C }
+
+@Pascal end.
