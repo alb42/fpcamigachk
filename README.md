@@ -1,6 +1,8 @@
 # fpcamigachk
 FreePascal Amiga structure check using H2PasChk
 
+checks the FreePascal library units Pascal-records against the SDK C-structs (Position/Size of every field and the overall size of the struct)
+
 you need for your Amiga-System:
 - H2PasChk can be found in the util/h2pas directory of FreePascal
 - FreePascal
