@@ -1,5 +1,5 @@
 @Pascal program Tests;
-@Pascal uses exec;
+@Pascal uses exec,timer;
 @Pascal begin
 
 @C #include <exec/lists.h>
@@ -13,6 +13,7 @@
 @C #include <exec/devices.h>
 @C #include <exec/io.h>
 @C #include <exec/execbase.h>
+@C #include <devices/timer.h>
 @C #include <stdio.h>
 @C #include <stddef.h>
 @C int main()
@@ -255,8 +256,17 @@
 .ex_MemHandlers
 .ex_MemHandler
 
+@record TTimeval,struct timeval
+.tv_secs
+.tv_micro
 
+@record TTimerequest,struct timerequest
+.tr_node
+.tr_time
 
+@record TEClockVal,struct EClockVal
+.ev_hi
+.ev_lo
 
 @C   return 0;
 @C }
