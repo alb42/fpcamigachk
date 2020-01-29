@@ -330,6 +330,23 @@
 .dl_UtilityBase
 .dl_IntuitionBase
 
+@record TDosList,struct DosList
+.dol_Next
+.dol_Type
+.dol_Task
+.dol_Lock
+.dol_Handler.dol_Handler,dol_misc.dol_handler.dol_Handler
+.dol_Handler.dol_StackSize,dol_misc.dol_handler.dol_StackSize
+.dol_Handler.dol_Priority,dol_misc.dol_handler.dol_Priority
+.dol_Handler.dol_Startup,dol_misc.dol_handler.dol_Startup
+.dol_Handler.dol_SegList,dol_misc.dol_handler.dol_SegList
+.dol_Handler.dol_GlobVec,dol_misc.dol_handler.dol_GlobVec
+.dol_Volume.dol_VolumeDate,dol_misc.dol_volume.dol_VolumeDate
+.dol_Volume.dol_LockList,dol_misc.dol_volume.dol_LockList
+.dol_Volume.dol_DiskType,dol_misc.dol_volume.dol_DiskType
+.dol_assign.dol_AssignName,dol_misc.dol_assign.dol_AssignName
+.dol_Name
+
 @C   return 0;
 @C }
 
