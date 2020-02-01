@@ -70,7 +70,6 @@
 .ap_BreakBits
 .ap_FoundBreak
 .ap_Flags
-.ap_Reserved
 .ap_Strlen
 .ap_Info
 .ap_Buf
@@ -180,7 +179,6 @@
 .dl_VolumeDate
 .dl_LockList
 .dl_DiskType
-.dl_unused
 .dl_Name
 
 @record TDevInfo,struct DevInfo
@@ -192,6 +190,26 @@
 .dvi_StackSize
 .dvi_Priority
 .dvi_Startup
+.dvi_SegList
+.dvi_GlobVec
+.dvi_Name
+
+@record TDosList,struct DosList
+.dol_Next
+.dol_Type
+.dol_Task
+.dol_Lock
+.dol_Handler.dol_Handler,dol_misc.dol_handler.dol_Handler
+.dol_Handler.dol_StackSize,dol_misc.dol_handler.dol_StackSize
+.dol_Handler.dol_Priority,dol_misc.dol_handler.dol_Priority
+.dol_Handler.dol_Startup,dol_misc.dol_handler.dol_Startup
+.dol_Handler.dol_SegList,dol_misc.dol_handler.dol_SegList
+.dol_Handler.dol_GlobVec,dol_misc.dol_handler.dol_GlobVec
+.dol_Volume.dol_VolumeDate,dol_misc.dol_volume.dol_VolumeDate
+.dol_Volume.dol_LockList,dol_misc.dol_volume.dol_LockList
+.dol_Volume.dol_DiskType,dol_misc.dol_volume.dol_DiskType
+.dol_assign.dol_AssignName,dol_misc.dol_assign.dol_AssignName
+.dol_Name
 
 @record TAssignList,struct AssignList
 .al_Next
@@ -222,6 +240,12 @@
 .ed_Comment
 .ed_OwnerUID
 .ed_OwnerGID
+
+@record TExAllControl,struct ExAllControl
+.eac_Entries
+.eac_LastKey
+.eac_MatchString
+.eac_MatchFunc 
 
 @record TDosEnvec,struct DosEnvec
 .de_TableSize
@@ -330,22 +354,10 @@
 .dl_UtilityBase
 .dl_IntuitionBase
 
-@record TDosList,struct DosList
-.dol_Next
-.dol_Type
-.dol_Task
-.dol_Lock
-.dol_Handler.dol_Handler,dol_misc.dol_handler.dol_Handler
-.dol_Handler.dol_StackSize,dol_misc.dol_handler.dol_StackSize
-.dol_Handler.dol_Priority,dol_misc.dol_handler.dol_Priority
-.dol_Handler.dol_Startup,dol_misc.dol_handler.dol_Startup
-.dol_Handler.dol_SegList,dol_misc.dol_handler.dol_SegList
-.dol_Handler.dol_GlobVec,dol_misc.dol_handler.dol_GlobVec
-.dol_Volume.dol_VolumeDate,dol_misc.dol_volume.dol_VolumeDate
-.dol_Volume.dol_LockList,dol_misc.dol_volume.dol_LockList
-.dol_Volume.dol_DiskType,dol_misc.dol_volume.dol_DiskType
-.dol_assign.dol_AssignName,dol_misc.dol_assign.dol_AssignName
-.dol_Name
+@record TCliProcList, struct CliProcList
+.cpl_Node
+.cpl_First
+.cpl_Array
 
 @C   return 0;
 @C }
