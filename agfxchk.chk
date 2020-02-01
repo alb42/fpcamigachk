@@ -19,6 +19,22 @@
 @C int main()
 @C {
 
+@record TRectangle,struct Rectangle
+.MinX
+.MinY
+.MaxX
+.MaxY
+
+@record TRect32,struct Rect32
+.MinX
+.MinY
+.MaxX
+.MaxY
+
+@record TPoint,struct tPoint
+.x
+.y
+
 @record TBitMap,struct BitMap
 .BytesPerRow
 .Rows
@@ -91,7 +107,7 @@
 @record TVSprite,struct VSprite
 .NextVSprite
 .PrevVSprite
-//.IntVSprite
+.DrawPath
 .ClearPath
 .OldY
 .OldX
@@ -163,10 +179,10 @@
 
 @record TClipRect,struct ClipRect
 .Next
-.Prev,prev
-.Lobs,lobs
+.prev
+.lobs
 .BitMap
-.Bounds,bounds
+.bounds
 
 @record TLayer,struct Layer
 .front
@@ -174,7 +190,6 @@
 .ClipRect
 .rp
 .bounds
-//.parent
 .priority
 .Flags
 .SuperBitMap
