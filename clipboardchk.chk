@@ -1,0 +1,41 @@
+@Pascal program Tests;
+@Pascal uses clipboard;
+@Pascal begin
+
+@C #include <devices/clipboard.h>
+@C #include <stdio.h>
+@C #include <stddef.h>
+@C int main()
+@C {
+
+@record TClipboardUnitPartial,struct ClipboardUnitPartial 
+.cu_Node
+.cu_UnitNum      
+
+@record TIOClipReq,struct IOClipReq
+.io_Message
+.io_Device
+.io_Unit  
+.io_Command
+.io_Flags  
+.io_Error  
+.io_Actual 
+.io_Length 
+.io_Data   
+.io_Offset 
+.io_ClipID  
+
+@record TSatisfyMsg,struct SatisfyMsg
+.sm_Msg
+.sm_Unit
+.sm_ClipID
+   
+@record TClipHookMsg,struct ClipHookMsg
+.chm_Type
+.chm_ChangeCmd
+.chm_ClipID
+
+@C   return 0;
+@C }
+
+@Pascal end.
