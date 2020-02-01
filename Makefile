@@ -5,7 +5,7 @@
 RESULTS=execchk.diff amigadoschk.diff agfxchk.diff intuitionchk.diff \
         utilitychk.diff aslchk.diff cgfxchk.diff datatypeschk.diff \
         diskfontchk.diff workbenchchk.diff iffparsechk.diff \
-        localechk.diff clipboard.diff
+        localechk.diff clipboard.diff keymapchk.chk
 
 CC=gcc
 FPC=fpc

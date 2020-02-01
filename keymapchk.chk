@@ -1,0 +1,32 @@
+@Pascal program Tests;
+@Pascal uses keymap;
+@Pascal begin
+
+@C #include <devices/keymap.h>
+@C #include <stdio.h>
+@C #include <stddef.h>
+@C int main()
+@C {
+
+@record TKeyMap,struct KeyMap
+.km_LoKeyMapTypes
+.km_LoKeyMap
+.km_LoCapsable
+.km_LoRepeatable
+.km_HiKeyMapTypes
+.km_HiKeyMap
+.km_HiCapsable
+.km_HiRepeatable
+
+@record TKeyMapNode,struct KeyMapNode
+.kn_Node
+.kn_KeyMap
+
+@record TKeyMapResource,struct KeyMapResource
+.kr_Node
+.kr_List
+
+@C   return 0;
+@C }
+
+@Pascal end.
