@@ -5,6 +5,7 @@
 @C #include <workbench/icon.h>
 @C #include <workbench/startup.h>
 @C #include <workbench/workbench.h>
+@C #include <workbench/icon.h>
 @C #include <stdio.h>
 @C #include <stddef.h>
 @C int main()
@@ -150,6 +151,17 @@
 .tim_Length
 .tim_Action
 .tim_Prompt
+
+@record TIconIdentifyMsg,struct IconIdentifyMsg          
+.iim_SysBase
+.iim_DOSBase
+.iim_UtilityBase
+.iim_IconBase
+.iim_FileLock
+.iim_ParentLock
+.iim_FIB
+.iim_FileHandle
+.iim_Tags 
 
 @C   return 0;
 @C }
