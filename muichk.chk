@@ -1,0 +1,118 @@
+@Pascal program Tests;
+@Pascal uses mui;
+@Pascal begin
+
+@C #include <libraries/mui.h>
+@C #include <stdio.h>
+@C #include <stddef.h>
+@C int main()
+@C {
+
+@record TMUI_Command,struct MUI_Command
+.mc_Name
+.mc_Template
+.mc_Parameters
+.mc_Hook
+
+@record TMUI_PenSpec,struct MUI_PenSpec
+.buf
+
+@record TMUI_Palette_Entry,struct MUI_Palette_Entry
+.mpe_ID
+.mpe_Red
+.mpe_Green
+.mpe_Blue
+.mpe_Group
+
+@record TMUI_InputHandlerNode,struct MUI_InputHandlerNode
+.ihn_Node
+.ihn_Object
+.ihn_stuff.ihn_sigs
+.ihn_stuff.ihn_timer.ihn_millis
+.ihn_stuff.ihn_timer.ihn_current
+.ihn_Flags
+.ihn_Method
+
+@record TMUI_EventHandlerNode,struct MUI_EventHandlerNode
+.ehn_Node
+.ehn_Priority
+.ehn_Flags
+.ehn_Object
+.ehn_Class
+.ehn_Events
+
+@record TMUI_List_TestPos_Result,struct MUI_List_TestPos_Result
+.entry
+.column
+.flags
+.xoffset
+.yoffset
+
+@record TMUI_BoopsiQuery,struct MUI_BoopsiQuery
+.mbq_MethodID
+.mbq_Screen
+.mbq_Flags
+.mbq_MinWidth
+.mbq_MinHeight
+.mbq_MaxWidth
+.mbq_MaxHeight
+.mbq_DefWidth
+.mbq_DefHeight
+.mbq_RenderInfo
+
+@record TMUI_GlobalInfo,struct MUI_GlobalInfo
+.mgi_ApplicationObject
+
+@record TMUI_NotifyData,struct MUI_NotifyData
+.mnd_GlobalInfo
+.mnd_UserData
+.mnd_ObjectID
+
+@record TMUI_MinMax,struct MUI_MinMax
+.MinWidth
+.MinHeight
+.MaxWidth
+.MaxHeight
+.DefWidth
+.DefHeight
+
+@record TMUI_LayoutMsg,struct MUI_LayoutMsg
+.lm_Type
+.lm_Children
+.lm_MinMax
+.lm_Layout.Width
+.lm_Layout.Height
+
+@record TMUI_AreaData,struct MUI_AreaData
+.mad_RenderInfo
+.mad_Font
+.mad_MinMax
+.mad_Box
+.mad_addleft
+.mad_addtop
+.mad_subwidth
+.mad_subheight
+.mad_Flags
+
+@record TMUI_RenderInfo,struct MUI_RenderInfo
+.mri_WindowObject
+.mri_Screen
+.mri_DrawInfo
+.mri_Pens
+.mri_Window
+.mri_RastPort
+.mri_Flags
+
+@record TMUI_CustomClass,struct MUI_CustomClass
+.mcc_UserData
+.mcc_UtilityBase
+.mcc_DOSBase
+.mcc_GfxBase
+.mcc_IntuitionBase
+.mcc_Super
+.mcc_Class 
+
+@C   return 0;
+@C }
+
+@Pascal end.
