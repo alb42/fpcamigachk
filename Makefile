@@ -29,7 +29,7 @@ DIFF=diff
 %.diff: %.x %.y
 	@$(DIFF) $^ >$@
 clean:
-	@rm -rf *.o *.c *.pas *.x *.y *.xx *.yy *.diff
+	@rm -rf *.o *.c *.pas *.x *.y *.xx *.yy *.diff *.out
 all: clean $(RESULTS)
 	@ls -s *.diff
 	@echo "### All done"
