@@ -127,17 +127,6 @@
 .dtd_TopVert
 .dtd_AttrList
 
-@record TdtReleaseDrawInfo,struct dtReleaseDrawInfo
-.MethodID
-.dtr_Handle
-
-@record TdtWrite,struct dtWrite
-.MethodID
-.dtw_GInfo
-.dtw_FileHandle
-.dtw_Mode
-.dtw_AttrList
-
 @record TBitMapHeader,struct BitMapHeader
 .bmh_Width
 .bmh_Height
@@ -203,22 +192,6 @@
 .alf_SampleLength
 .alf_Period
 .alf_UserData
-
-@record TadtNewFormatFrame,struct adtNewFormatFrame
-.MethodID
-.alf_TimeStamp
-.alf_Frame
-.alf_Duration
-.alf_BitMap
-.alf_CMap
-.alf_Sample
-.alf_SampleLength
-.alf_Period
-.alf_UserData
-.alf_Size
-.alf_LeftSample
-.alf_RightSample
-.alf_SamplesPerSec
 
 @record TadtStart,struct adtStart
 .MethodID

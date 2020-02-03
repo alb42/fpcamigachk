@@ -16,6 +16,7 @@
 @C #include <devices/timer.h>
 @C #include <devices/clipboard.h>
 @C #include <devices/serial.h>
+@C #include <utility/tagitem.h>
 @C #include <stdio.h>
 @C #include <stddef.h>
 @C int main()
@@ -57,8 +58,6 @@
 .rt_Name
 .rt_IdString
 .rt_Init
-.rt_Revision
-.rt_Tags
 
 @record TMemChunk,struct MemChunk
 .mc_Next
@@ -254,7 +253,6 @@
 .ex_CacheControl
 .ex_TaskID
 .ex_MMULock
-.ex_DebugFlags
 .ex_MemHandlers
 .ex_MemHandler
 

@@ -1,5 +1,5 @@
 @Pascal program Tests;
-@Pascal uses agraphics;
+@Pascal uses agraphics,layers;
 @Pascal begin
 
 @C #include <graphics/gfx.h>

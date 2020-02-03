@@ -113,7 +113,6 @@
 .pr_CES
 
 @record TFileHandle,struct FileHandle
-.fh_Flags
 .fh_Port
 .fh_Type
 .fh_Buf
