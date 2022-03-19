@@ -189,8 +189,6 @@
 .dvi_StackSize
 .dvi_Priority
 .dvi_Startup
-.dvi_SegList
-.dvi_GlobVec
 .dvi_Name
 
 @record TDosList,struct DosList
@@ -353,10 +351,6 @@
 .dl_UtilityBase
 .dl_IntuitionBase
 
-@record TCliProcList, struct CliProcList
-.cpl_Node
-.cpl_First
-.cpl_Array
 
 @C   return 0;
 @C }

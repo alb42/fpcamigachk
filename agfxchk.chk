@@ -107,7 +107,6 @@
 @record TVSprite,struct VSprite
 .NextVSprite
 .PrevVSprite
-.DrawPath
 .ClearPath
 .OldY
 .OldX

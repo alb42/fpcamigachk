@@ -88,16 +88,13 @@
 .fri_Flags
 
 @record TdtGeneral,struct dtGeneral
-.MethodID
 .dtg_GInfo
 
 @record TdtSelect,struct dtSelect
-.MethodID
 .dts_GInfo
 .dts_Select
 
 @record TdtFrameBox,struct dtFrameBox
-.MethodID
 .dtf_GInfo
 .dtf_ContentsInfo
 .dtf_FrameInfo
@@ -105,19 +102,16 @@
 .dtf_FrameFlags
 
 @record TdtGoto,struct dtGoto
-.MethodID
 .dtg_GInfo
 .dtg_NodeName
 .dtg_AttrList
 
 @record TdtTrigger,struct dtTrigger
-.MethodID
 .dtt_GInfo
 .dtt_Function
 .dtt_Data
 
 @record TdtDraw,struct dtDraw
-.MethodID
 .dtd_RPort
 .dtd_Left
 .dtd_Top
@@ -182,7 +176,6 @@
 .ah_Flags
 
 @record TadtFrame,struct adtFrame
-.MethodID
 .alf_TimeStamp
 .alf_Frame
 .alf_Duration
@@ -194,7 +187,6 @@
 .alf_UserData
 
 @record TadtStart,struct adtStart
-.MethodID
 .asa_Frame
 
 

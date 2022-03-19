@@ -215,14 +215,9 @@
 .MaxExtMem
 .ChkSum
 .IntVects
-.ThisTask
 .IdleCount
 .DispCount
-.Quantum
-.Elapsed
 .SysFlags
-.IDNestCnt
-.TDNestCnt
 .AttnFlags
 .AttnResched
 .ResModules
